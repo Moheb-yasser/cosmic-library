@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "883704890392",
+    "project_id": "i-book-d2001",
+    "storage_bucket": "i-book-d2001.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:883704890392:android:31cfc10c73b06d21aaef6d",
+        "android_client_info": {
+          "package_name": "com.example.i_book"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD7HPbIcN2gc5U68qit0eF2ENp4QcGqhdI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
