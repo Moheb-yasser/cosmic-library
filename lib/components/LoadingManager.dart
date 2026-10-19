@@ -16,6 +16,11 @@ class LoadingManager {
     );
   }
 
+  static void hide(BuildContext context) {
+    // showDialog uses the root navigator by default, so pop from the root
+    Navigator.of(context, rootNavigator: true).pop();
+  }
+
   //Method 2: Custom Branded SVG Loader
   static void showCustomLoading(BuildContext context) {
     showDialog(

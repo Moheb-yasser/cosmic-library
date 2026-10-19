@@ -148,150 +148,152 @@ class _SignUpState extends State<SignUp> {
   Widget build(BuildContext context) {
 
     return Scaffold(
-      body: Container(
-        width: double.infinity,
-        height: double.infinity,
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('assets/welcome-background-4.png'),
-            fit: BoxFit.cover,
+      body: SafeArea(
+        child: Container(
+          width: double.infinity,
+          height: double.infinity,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/welcome-background-4.png'),
+              fit: BoxFit.cover,
+            ),
           ),
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            //back button
-            Row(
-              children: [
-                Padding(padding: EdgeInsetsGeometry.all(12),
-                  child: GestureDetector(
-                    onTap: () {
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              //back button
+              Row(
+                children: [
+                  Padding(padding: EdgeInsetsGeometry.all(12),
+                    child: GestureDetector(
+                      onTap: () {
+                        _hideError();
+                        Navigator.pop(context, MaterialPageRoute(builder: (c)=> Welcome()));
+                      },
+                      child: Row(
+                        children: [
+                          Icon(Icons.arrow_back, color: AppColors().SoftCrystalWhite
+                              ,fontWeight: FontWeight.w600),
+                          SizedBox(width: 9),
+                          Text("Back", style: GoogleFonts.poppins(
+                              color: AppColors().SoftCrystalWhite,fontWeight: FontWeight.w600
+                              ,fontSize: 20,
+                          )),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              SvgPicture.asset(
+                'assets/Open-Book--Streamline-Core.svg',
+                height: 65, color: AppColors().ElectricPurple,
+              ),
+              SizedBox(height: 8),
+              Text("Create Account",style: GoogleFonts.montserrat(color: AppColors().SoftLavender,
+                  fontSize: 30,fontWeight: FontWeight.bold,letterSpacing: -0.2),
+              ),
+              Padding(
+                padding: EdgeInsets.all(0),
+                child: Text("Join the cosmic library",
+                  textAlign: TextAlign.center,
+                  style: GoogleFonts.poppins(color: AppColors().SoftCrystalWhite,
+                      fontSize: 15,fontWeight: FontWeight.w700,letterSpacing: 0.5),
+                ),
+              ),
+              Form(
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      //First name field
+                      MyTextField(
+                        link: _links[0],
+                        controller: _controllers[0],
+                        label: "First Name",
+                        hintText: "Moheb",
+                        prefixIcon: Icons.person_outline,
+                      ),
+                      SizedBox(height: 10),
+                      //Last name field
+                      MyTextField(
+                        link: _links[1],
+                        controller: _controllers[1],
+                        label: "Last Name",
+                        hintText: "Yasser",
+                        prefixIcon: Icons.person_outline,
+                      ),
+                      SizedBox(height: 10),
+                      //Email field
+                      MyTextField(
+                        link: _links[2],
+                        controller: _controllers[2],
+                        label: "Email",
+                        hintText: "your@gmail.com",
+                        prefixIcon: Icons.email_outlined,
+                      ),
+                      SizedBox(height: 10),
+                      //Password field
+                      MyTextField(
+                        link: _links[3],
+                        controller: _controllers[3],
+                        obscureText: true,
+                        label: "Password",
+                        hintText: "********",
+                        prefixIcon: Icons.lock_person_outlined,
+                      ),
+                      SizedBox(height: 10),
+                      //Confirm Password field
+                      MyTextField(
+                        link: _links[4],
+                        controller: _controllers[4],
+                        obscureText: true,
+                        label: "Confirm Password",
+                        hintText: "********",
+                        prefixIcon: Icons.lock_person_outlined,
+                      ),
+                      SizedBox(height: 18),
+                      //Create Account button
+                      ElevatedButton(
+                        onPressed: _startJourney,
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: AppColors().ElectricPurple, minimumSize: Size(370, 60),
+                        ),
+                        child: Text("Create Account",style: GoogleFonts.montserrat(fontWeight:
+                        FontWeight.bold,fontSize: 22,color: AppColors().CrystalWhite,height: 3),
+                        ),
+                      ),
+                      SizedBox(height: 18),
+                    ],
+                  ),
+                ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text("Already have an account? ",style: GoogleFonts.poppins(color: AppColors().SoftCrystalWhite,
+                      fontSize: 14,fontWeight: FontWeight.w600,letterSpacing: 0.5),
+                  ),
+                  GestureDetector(
+                    onTap: (){
                       _hideError();
-                      Navigator.push(context, MaterialPageRoute(builder: (c)=> Welcome()));
+                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (c)=> LogIn()));
                     },
-                    child: Row(
-                      children: [
-                        Icon(Icons.arrow_back, color: AppColors().SoftCrystalWhite
-                            ,fontWeight: FontWeight.w600),
-                        SizedBox(width: 9),
-                        Text("Back", style: GoogleFonts.poppins(
-                            color: AppColors().SoftCrystalWhite,fontWeight: FontWeight.w600
-                            ,fontSize: 20,
-                        )),
-                      ],
+                    child: Container(
+                      child: Center(child: Text(
+                        'Log In',
+                        style: GoogleFonts.poppins(
+                          textStyle: GoogleFonts.poppins(color: AppColors().ElectricPurple,
+                              fontSize: 18,fontWeight: FontWeight.w600),
+                        ),
+                      ),
+                      ),
                     ),
                   ),
-                ),
-              ],
-            ),
-            SvgPicture.asset(
-              'assets/Open-Book--Streamline-Core.svg',
-              height: 70, color: AppColors().ElectricPurple,
-            ),
-            SizedBox(height: 12),
-            Text("Create Account",style: GoogleFonts.montserrat(color: AppColors().SoftLavender,
-                fontSize: 30,fontWeight: FontWeight.bold,letterSpacing: -0.2),
-            ),
-            Padding(
-              padding: EdgeInsets.all(12),
-              child: Text("Join the cosmic library",
-                textAlign: TextAlign.center,
-                style: GoogleFonts.poppins(color: AppColors().SoftCrystalWhite,
-                    fontSize: 15,fontWeight: FontWeight.w700,letterSpacing: 0.5),
+                ],
               ),
-            ),
-            Form(
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    //First name field
-                    MyTextField(
-                      link: _links[0],
-                      controller: _controllers[0],
-                      label: "First Name",
-                      hintText: "Moheb",
-                      prefixIcon: Icons.person_outline,
-                    ),
-                    SizedBox(height: 18),
-                    //Last name field
-                    MyTextField(
-                      link: _links[1],
-                      controller: _controllers[1],
-                      label: "Last Name",
-                      hintText: "Yasser",
-                      prefixIcon: Icons.person_outline,
-                    ),
-                    SizedBox(height: 18),
-                    //Email field
-                    MyTextField(
-                      link: _links[2],
-                      controller: _controllers[2],
-                      label: "Email",
-                      hintText: "your@gmail.com",
-                      prefixIcon: Icons.email_outlined,
-                    ),
-                    SizedBox(height: 18),
-                    //Password field
-                    MyTextField(
-                      link: _links[3],
-                      controller: _controllers[3],
-                      obscureText: true,
-                      label: "Password",
-                      hintText: "********",
-                      prefixIcon: Icons.lock_person_outlined,
-                    ),
-                    SizedBox(height: 18),
-                    //Confirm Password field
-                    MyTextField(
-                      link: _links[4],
-                      controller: _controllers[4],
-                      obscureText: true,
-                      label: "Confirm Password",
-                      hintText: "********",
-                      prefixIcon: Icons.lock_person_outlined,
-                    ),
-                    SizedBox(height: 18),
-                    //Create Account button
-                    ElevatedButton(
-                      onPressed: _startJourney,
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: AppColors().ElectricPurple, minimumSize: Size(370, 60),
-                      ),
-                      child: Text("Create Account",style: GoogleFonts.montserrat(fontWeight:
-                      FontWeight.bold,fontSize: 22,color: AppColors().CrystalWhite,height: 3),
-                      ),
-                    ),
-                    SizedBox(height: 18),
-                  ],
-                ),
-              ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text("Already have an account? ",style: GoogleFonts.poppins(color: AppColors().SoftCrystalWhite,
-                    fontSize: 14,fontWeight: FontWeight.w600,letterSpacing: 0.5),
-                ),
-                GestureDetector(
-                  onTap: (){
-                    _hideError();
-                    Navigator.push(context, MaterialPageRoute(builder: (c)=> LogIn()));
-                  },
-                  child: Container(
-                    child: Center(child: Text(
-                      'Log In',
-                      style: GoogleFonts.poppins(
-                        textStyle: GoogleFonts.poppins(color: AppColors().ElectricPurple,
-                            fontSize: 18,fontWeight: FontWeight.w600),
-                      ),
-                    ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(height: 56),
-          ],
+              SizedBox(height: 56),
+            ],
+          ),
         ),
       ),
     );
